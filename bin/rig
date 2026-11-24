@@ -1,0 +1,6 @@
+#!/usr/bin/env -S nvim -l
+-- `rig --help` lists the commands (see lua/rig/cli.lua). `rig setup` links this
+-- file onto PATH; it finds the plugin's Lua through the link, and mux next to it
+-- (see lua/rig/paths.lua).
+vim.opt.rtp:prepend(vim.fs.dirname(vim.fs.dirname(vim.uv.fs_realpath(_G.arg[0]))))
+require("rig.cli").main(vim.list_slice(_G.arg, 1))

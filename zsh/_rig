@@ -1,0 +1,7 @@
+#compdef rig
+# Commands and skills first; worktree names after a command.
+if (( CURRENT == 2 )); then
+  compadd -- $(rig names commands 2>/dev/null)
+else
+  compadd -- $(rig names 2>/dev/null)
+fi
