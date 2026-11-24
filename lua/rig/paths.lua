@@ -10,14 +10,15 @@ end
 -- The rig command, called by path so it works before `rig setup` puts it on PATH.
 function M.bin() return vim.fs.joinpath(M.root(), "bin", "rig") end
 
--- The mux.nvim folder: next to rig.nvim (as vim.pack and most checkouts put
--- them), else wherever the mux command on PATH links to. Nil when neither is there.
+-- The mux.nvim folder: wherever the mux command on PATH links to, so rig runs
+-- the same mux as the command (`mux setup` sets the link), else next to
+-- rig.nvim, as vim.pack puts them. Nil when neither is there.
 function M.mux()
-  local sibling = vim.fs.joinpath(vim.fs.dirname(M.root()), "mux.nvim")
-  if vim.uv.fs_stat(vim.fs.joinpath(sibling, "lua", "mux", "cli.lua")) then return sibling end
   local exe = vim.fn.exepath("mux")
   local real = exe ~= "" and vim.uv.fs_realpath(exe)
-  return real and vim.fs.dirname(vim.fs.dirname(real)) or nil
+  if real then return vim.fs.dirname(vim.fs.dirname(real)) end
+  local sibling = vim.fs.joinpath(vim.fs.dirname(M.root()), "mux.nvim")
+  if vim.uv.fs_stat(vim.fs.joinpath(sibling, "lua", "mux", "cli.lua")) then return sibling end
 end
 
 -- Puts mux on the runtimepath unless it can already be loaded. Returns false

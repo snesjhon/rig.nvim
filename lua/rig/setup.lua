@@ -39,7 +39,7 @@ end
 -- mux runs the sessions, and needs rig's session source to start worktree sessions.
 local function check_mux()
   if not paths.use_mux() then
-    return say("✗ mux not found; install mux.nvim next to rig.nvim, or put the mux command on PATH")
+    return say("✗ mux not found; put the mux command on PATH (mux setup), or install mux.nvim next to rig.nvim")
   end
   say("✓ mux " .. (paths.mux() or "on the runtimepath"))
   local ok, cfg = pcall(require("mux.config").get)

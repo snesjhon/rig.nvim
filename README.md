@@ -18,7 +18,7 @@ Needs [mux](https://github.com/snesjhon/mux.nvim), nvim 0.12 or later, git, gh, 
 vim.pack.add({ "https://github.com/snesjhon/mux.nvim", "https://github.com/snesjhon/rig.nvim" })
 ```
 
-rig finds mux next to it (as `vim.pack` puts them) or through the `mux` command on PATH. Add rig's session source to the mux config, so mux lists and starts worktree sessions:
+rig finds mux through the `mux` command on PATH (`mux setup` links it), else next to it, as `vim.pack` puts them. Add rig's session source to the mux config, so mux lists and starts worktree sessions:
 
 ```lua
 -- ~/.config/mux/config.lua

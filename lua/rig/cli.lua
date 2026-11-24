@@ -53,7 +53,7 @@ local function dispatch(args)
   if not cmd or cmd == "-h" or cmd == "--help" or cmd == "help" then return io.stderr:write(usage, "\n") end
   if cmd == "setup" then return require("rig.setup").run(args) end
   if not require("rig.paths").use_mux() then
-    fail("rig: mux not found; install mux.nvim next to rig.nvim, or put the mux command on PATH")
+    fail("rig: mux not found; put the mux command on PATH (mux setup), or install mux.nvim next to rig.nvim")
   end
   if cmd == "names" then return names(args) end
   local worktree = require("rig.worktree")
